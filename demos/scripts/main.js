@@ -8,46 +8,51 @@
         var usejQuery = 'usejQueryVersion' in window && define.amd.jQuery,
             riloadrFileName = usejQuery ? 'riloadr.jquery' : 'riloadr',
             cfg = {
-                paths: {'jquery': 'http://code.jquery.com/jquery-1.10.1.min'}
+                paths: {
+                    'jquery': 'http://code.jquery.com/jquery-1.10.1.min',
+                    'tooltip' : '/demos/scripts/tooltip'
+                }
             };
-        
+
         // RequireJS
         if (typeof require === 'function') {
             require.config(cfg);
-            require(['../' + riloadrFileName + '.js'], fn);
-        
+            require(['../' + riloadrFileName + '.js', 'tooltip'], fn);
         // curl
         } else if (typeof curl === 'function') {
             cfg.baseUrl = '../';
             curl(cfg, [riloadrFileName], fn);
         }
 
-    // Browser global      
+    // Browser global
     } else {
         fn(Riloadr);
     }
-}(function(Riloadr) {
+}(function(Riloadr, tooltip) {
 
     // Make it safe to use console.log always
     (function(a){function b(){}for(var c="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),d;!!(d=c.pop());){a[d]=a[d]||b;}})(function(){try{console.log();return window.console;}catch(a){return (window.console={});}}());
 
     // AMD test
     var isAMD = !('Riloadr' in window);
+
     console.log('AMD loader used? ' + isAMD);
+
     if (isAMD) {
         console.log('AMD loader in use: ' + (typeof require === 'function' ? 'RequireJS '+require.version : 'curl '+curl.version));
     }
 
     // jQuery test
     var jQueryLoaded = 'jQuery' in window;
+
     console.log('jQuery version used? ' + jQueryLoaded);
     if (jQueryLoaded) {
         console.log('jQuery version in use: ' + jQuery.fn.jquery);
-    }   
+    }
 
     // Riloadr version
     console.log('Riloadr version: ' + Riloadr.version);
-    
+
     // Image callbacks
     var onload = function(){
         console.log("'" + this.alt + "' image loaded!");
@@ -78,6 +83,7 @@
         onerror: onerror,
         oncomplete: function() {
             console.log("All images in Group 2 are loaded");
+
         },
         retries: 1,
         breakpoints: [
@@ -88,7 +94,7 @@
             {name: 1024, minWidth: 641}
         ]
     });
-    
+
     var group3 = new Riloadr({
         name: 'mygroup3',
         base: 'images/{breakpoint-name}/',
@@ -105,7 +111,7 @@
             {name: 1024, minWidth: 641}
         ]
     });
-    
+
     var group4 = new Riloadr({
         name: 'mygroup4',
         base: 'images/{breakpoint-name}/',
@@ -127,7 +133,7 @@
         },
         retries: 1,
         breakpoints: [
-            {name: 320, maxWidth: 320}, 
+            {name: 320, maxWidth: 320},
             {name: 480, minWidth: 321, fallback: 320} // There's no '480' folder so a 320px fallback will be used (if viewport is wider than 320px)
         ]
     });
@@ -141,7 +147,7 @@
         },
         onerror: onerror,
         breakpoints: [
-            {name: 240, maxWidth: 320, imgFormat: 'gif'}, // Serve the .gif version instead of the .jpg one 
+            {name: 240, maxWidth: 320, imgFormat: 'gif'}, // Serve the .gif version instead of the .jpg one
             {name: 640, maxWidth: 640, imgFormat: 'png'}, // Serve the .png version instead of the .jpg one
             {name: 640, minWidth: 641, imgFormat: 'jpg'} // Viewports wider than 640px. Serve the .jpg version
         ]
@@ -211,7 +217,6 @@
         ]
     });
 
-    
     // Buttons will show up when window is loaded
     // Although this works x-browser, this code is shit so don't use it!!
     function activateButtons() {
@@ -224,11 +229,12 @@
                 {name: 'tahiti', alt: 'Tahiti'}
             ],
             group4Container = document.getElementById('group4'),
-            group4Button = document.getElementById('group4-button');
+            group4Button = document.getElementById('group4-button'),
+            toolTip = new tooltip(document.images);
 
         // Display them
-        group2Button.style.display = group4Button.style.display = 'block';    
-        
+        group2Button.style.display = group4Button.style.display = 'block';
+
         // Register click listeners
         // Group 2 button
         group2Button.onclick = function() {
@@ -239,12 +245,13 @@
             img.className = 'responsive';
             img.alt = img.className + ' - ' + image.alt;
             img.setAttribute('data-src', image.name + '.jpg');
+            img.setAttribute('data-title', image.alt);
 
             // Add images to the document with Javascript
             p.appendChild(img);
-            group2Container.appendChild(p);
-                
-            group2.riload();    
+
+            group2.riload();
+            toolTip = new tooltip(document.images);
         };
 
         // Group 4 button
@@ -252,15 +259,16 @@
             // Add images to the document with Javascript
             // You can use innerHTML to add new images to a group and only those
             // will be processed by Riloadr.
-            group4Container.innerHTML += 
+            group4Container.innerHTML +=
                 '<p>' +
-                    '<img class="mygroup4" data-src="cocoa.jpg" alt="group4 - Cocoa Beach">' + 
-                '</p>' + 
-                '<p>' + 
-                    '<img class="mygroup4" data-src="morro.jpg" alt="group4 - Morro Rocks">' + 
+                    '<img class="mygroup4" data-src="cocoa.jpg" alt="group4 - Cocoa Beach">' +
+                '</p>' +
+                '<p>' +
+                    '<img class="mygroup4" data-src="morro.jpg" alt="group4 - Morro Rocks">' +
                 '</p>';
-                
-            group4.riload();    
+
+            group4.riload();
+            toolTip = new tooltip(document.images);
         };
     }
 

@@ -1,8 +1,8 @@
 img {
     max-width: 100%; /* To make all images fluid */
-    /* IE8 bug: 
-       Add width:auto for any images inside floated elements without explicit widths. 
-	   See: http://www.456bereastreet.com/archive/201202/using_max-width_on_images_can_make_them_disappear_in_ie8/	
+    /* IE8 bug:
+       Add width:auto for any images inside floated elements without explicit widths.
+	   See: http://www.456bereastreet.com/archive/201202/using_max-width_on_images_can_make_them_disappear_in_ie8/
     */
 }
 .lt-ie8 img {
@@ -67,11 +67,36 @@ button {
 	overflow:scroll;
 }
 #horizontal-gallery ul{
-	list-style:none; 
+	list-style:none;
 	display:block;
 	white-space:nowrap;
 }
 #horizontal-gallery li{
 	width: 640px;
 	display:inline;
+}
+
+#tooltip {
+      position: absolute;
+      width: 100px;
+      height: 20px;
+      padding: 5px 10px;
+      font-size: 11px;
+      text-align: center;
+      color: rgb(113, 157, 171);
+      background: rgb(255, 255, 255);
+      border: 4px solid rgb(255, 255, 255);
+      border-radius: 5px;
+}
+
+#tooltip:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-width: 10px;
+      border-style: solid;
+      border-color: #FFFFFF transparent transparent transparent;
+      top: 34px;
+      left: 50px;
 }
