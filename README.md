@@ -14,7 +14,7 @@ Acceptance criteria
 -------------------
 1. When hovering over the images, a tooltip should appear.
 2. There must be no duplication of content.
-3. There must be no title attribute.
+3. There must be no title attribute used - at all.
 4. The solution must not interfere with standard browser behaviour. 
 5. HTML and CSS must validate.
 6. The principles of Progressive Enhancement must not be violated.
