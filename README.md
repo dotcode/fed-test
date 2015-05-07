@@ -19,6 +19,7 @@ Acceptance criteria
 5. HTML and CSS must validate.
 6. The principles of Progressive Enhancement must not be violated.
 7. Browser support: YUI GBS.
+8. Must be easy to maintain.
 
 Judging
 -------
