@@ -13,118 +13,13 @@
 		<link href="http://www.nature.com/view/styles/global.page.css" type="text/css" rel="stylesheet" />
 		<link href="http://www.nature.com/view/styles/global.sidebar.css" type="text/css" rel="stylesheet" />
 
+		<link href="tooltip.css" type="text/css" rel="stylesheet" />
+
 		<!--[if gte IE 8]><!-->
 		<link href="http://www.nature.com/view/styles/global.mobile.css" type="text/css" rel="stylesheet" />
 		<!--<![endif]-->
 
 		<link href="http://www.nature.com/view/srep/styles/site.css" type="text/css" rel="stylesheet" />
-
-		<style>
-
-			/* =Adjustments for follow nature module */
-
-			.follow-nature ul li a {
-				text-indent: 0;
-			}
-
-			/* =Tooltip */
-
-			.tooltip {
-			}
-
-			.tooltip-text {
-				color: #333333;
-				text-indent: -999em;
-				white-space: nowrap;
-				position: fixed;
-				z-index: 9999;
-				display: inline-block;
-				margin-left: -5px;
-				background: #ffffff;
-				opacity: 0;
-				pointer-events: none;
-			}
-
-			.tooltip-text:after {
-				content: "";
-			  position: absolute;
-			  left: -5px;
-			  top: 5px;
-				display: none;
-			  height: 0;
-			  width: 0;
-				border-bottom: 5px solid transparent;
-				border-top: 5px solid transparent;
-				border-right: 5px solid #ffffff;
-			}
-
-			.tooltip-text:before {
-				content: "";
-			  position: absolute;
-			  left: -6px;
-			  top: 4px;
-				display: none;
-			  height: 0;
-			  width: 0;
-				border-bottom: 6px solid transparent;
-				border-top: 6px solid transparent;
-				border-right: 6px solid #cccccc;
-			}
-
-			/* =Tootlip left */
-
-			.tooltip--left {
-				position: relative;
-			}
-
-			.tooltip--left .tooltip-text {
-				position: absolute;
-				left: auto;
-				right: 50%;
-				margin-left: 0;
-				margin-right: -5px;
-			}
-
-			.tooltip--left .tooltip-text:after,
-			.tooltip--left .tooltip-text:before {
-				left: auto;
-				border-right: none;
-			}
-
-			.tooltip--left .tooltip-text:after {
-			  right: -5px;
-				border-top: 5px solid transparent;
-			  border-bottom: 5px solid transparent;
-			  border-left: 5px solid #ffffff;
-			}
-
-			.tooltip--left .tooltip-text:before {
-			  right: -6px;
-				border-top: 6px solid transparent;
-			  border-bottom: 6px solid transparent;
-			  border-left: 6px solid #cccccc;
-			}
-
-			/* =Show tooltip on hover */
-
-			.tooltip:hover .tooltip-text {
-				text-indent: 0;
-				text-decoration: none;
-				margin-left: 5px;
-				margin-right: 5px;
-				padding-left: .5em;
-				padding-right: .5em;
-				border: 1px solid #cccccc;
-				opacity: 1;
-				transition: opacity .25s ease-in-out, margin-left .25s ease-in-out, margin-right .25s ease-in-out;
-			}
-
-			.tooltip:hover .tooltip-text:after,
-			.tooltip:hover .tooltip-text:before {
-				display: block;
-			}
-
-		</style>
 
 		<!--[if gte IE 8]><!-->
 		<link href="http://www.nature.com/view/srep/styles/site.mobile.css" type="text/css" rel="stylesheet" />
