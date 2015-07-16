@@ -20,9 +20,3 @@ Acceptance criteria
 6. The principles of Progressive Enhancement must not be violated.
 7. Browser support: YUI GBS.
 8. Must be easy to maintain.
-
-Judging
--------
-Your work will be judged against the acceptance criteria above, and also take into account the time elapsed between the link being sent to you, and you submitting your pull request. I will add a comment to your pull request noting the time taken.
-
-Obviously the faster the better, but the work MUST meet the acceptance criteria. I'm not interested in bad work, done quickly ;)
